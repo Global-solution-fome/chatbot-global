@@ -1,0 +1,8 @@
+Relatório do Chatbot de Verificação de Cadastro para Auxílio Emergencial e Auxílio Alimentação 
+
+Resumo: 
+
+O chatbot foi desenvolvido para simplificar o processo de verificação de cadastro em uma plataforma de auxílio emergencial e auxílio alimentação. Além de permitir a verificação de cadastro com base no CPF, o chatbot coleta dados pessoais do usuário, como RG/CNH, e-mail, telefone e documentos comprobatórios de atividade profissional. 
+Ele também é capaz de compreender e responder mensagens de texto e voz, estando disponível nos idiomas português e inglês. Introdução e Funcionalidades: O chatbot oferece uma interface de conversa interativa, permitindo que os usuários verifiquem o status de seu cadastro. Ao inserir o CPF, o chatbot informa se o cadastro está em andamento ou concluído. Além disso, o chatbot coleta dados pessoais necessários para etapas posteriores do processo, como RG/CNH, e-mail, telefone e documentos que comprovem atividade profissional prévia. 
+O chatbot foi treinado em técnicas avançadas de Processamento de Linguagem Natural (NLP) para compreender e responder mensagens de texto e voz. Também foi desenvolvido para oferecer suporte nos idiomas português e inglês, proporcionando maior acessibilidade aos usuários. O usuário precisa iniciar usando welcome ou bem-vindo.
+

@@ -1,0 +1,252 @@
+{
+  "intents": [
+    {
+      "intent": "cadastro",
+      "examples": [
+        {
+          "text": "iso cadastrar meus dados"
+        },
+        {
+          "text": "ja tenho cadastro"
+        },
+        {
+          "text": "quero realizar meu cadastro"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "cadastro-cpf",
+      "examples": [
+        {
+          "text": "48327955889"
+        },
+        {
+          "text": "49125868758"
+        },
+        {
+          "text": "87968455239"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "cadastro-email",
+      "examples": [
+        {
+          "text": "erick@fiap.com.br"
+        },
+        {
+          "text": "malaluno@fiap.com.br"
+        },
+        {
+          "text": "razyel.arboleya@gmail.com"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "cadastro-rg",
+      "examples": [
+        {
+          "text": "471895874"
+        },
+        {
+          "text": "481596398"
+        },
+        {
+          "text": "495953681"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "telefone",
+      "examples": [
+        {
+          "text": "11948598741"
+        },
+        {
+          "text": "11959632598"
+        },
+        {
+          "text": "11969284741"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "1",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "1",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": false
+    },
+    {
+      "entity": "2",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "2",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": false
+    },
+    {
+      "entity": "cpf",
+      "values": [
+        {
+          "type": "patterns",
+          "value": "cpf",
+          "patterns": [
+            "([0-9]{2}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[\\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\\.]?[0-9]{3}[\\.]?[0-9]{3}[-]?[0-9]{2})"
+          ]
+        }
+      ],
+      "fuzzy_match": false
+    },
+    {
+      "entity": "Não",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "nao",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": false
+    },
+    {
+      "entity": "Sim",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "sim",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": false
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Bem-vindo",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Olá , sou o assistente Neo, bem-vindo ao sistema de auxílio emergencial! Estou aqui para ajudar você a obter seu alimento ou seu benefício. Já possui cadastro em nossa plataforma?                          Digite:                                                                                                                                                                          1-Sim                                                                                                                                                                            2-Não"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome || #cadastro",
+      "dialog_node": "Bem-vindo"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Sua solicitação está em andamento, analisaremos se você está dentro dos requisitos para receber nosso auxílio aguarde um de nossos representantes entrar em contato com você."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1686005135089",
+      "conditions": "@cpf:cpf",
+      "dialog_node": "node_10_1686105786434"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Ok precise que me informe os seguintes dados:\n-E-mail\n-Cadastro de Pessoa Física (CPF)\n-Identidade (RG) ou Carteira Nacional de Habilitação (CNH)\n-Telefone\n-Carteira de Trabalho e Previdência Social (CTPS) ou outros documentos que comprovem sua atividade profissional prévia "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "Bem-vindo",
+      "conditions": "@2 || @Não",
+      "dialog_node": "node_3_1686005216004",
+      "previous_sibling": "node_6_1686005135089"
+    },
+    {
+      "type": "standard",
+      "parent": "node_7_1686101686811",
+      "dialog_node": "node_3_1686179388291"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Ok digite para mim seu CPF"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "Bem-vindo",
+      "conditions": "@1 || @Sim || #preenchimento-dados",
+      "dialog_node": "node_6_1686005135089"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Seus dados estão em análise.Se você se enquadrar nos critérios para receber o auxílio, em breve um de nossos representantes entrará em contato para validação do comprovante de residência e Carteira de Trabalho e Previdência Social (CTPS)."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1686005216004",
+      "conditions": "#cadastro-email || #cadastro-cpf || #cadastro-rg || #telefone",
+      "dialog_node": "node_7_1686101686811"
+    }
+  ],
+  "counterexamples": [],
+  "learning_opt_out": false,
+  "language": "pt-br",
+  "description": "created for assistant f4fa5866-60c5-47e2-be9d-5b7487d5803b",
+  "name": "Customer Helper-dialog"
+}
